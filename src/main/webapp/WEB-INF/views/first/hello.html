@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>HELLO</title>
 </head>
 <body>
 HELLO!
+
 <a href="first/bye">GO BYE</a> or <a href="exit">Exit</a>
 or <a href="/first/hello?name=Stas&surname=Kondr">Paramet</a>
 
+<p th:text="${message}"></p>
 </body>
 </html>
