@@ -35,7 +35,7 @@ public class PersonDAO {
     }
 
     public void save(Person person) {
-        jdbcTemplate.update("insert into person values (1, ?, ?, ?)", person.getName(), person.getAge(), person.getEmail());
+        jdbcTemplate.update("insert into person(name, age, email) values (?, ?, ?)", person.getName(), person.getAge(), person.getEmail());
     }
 
     public void update(int id, Person updatedPerson) {
