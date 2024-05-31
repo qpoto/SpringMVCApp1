@@ -9,3 +9,5 @@ create table person
 select * from person;
 
 drop table person;
+
+alter table person add column address varchar not null;
