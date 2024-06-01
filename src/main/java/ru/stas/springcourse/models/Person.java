@@ -1,33 +1,42 @@
 package ru.stas.springcourse.models;
 
-import javax.validation.constraints.*;
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
+@Entity
+@Table(name = "Person")
 public class Person {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @NotEmpty(message = "Name not empty")
     @Size(min = 2, max = 30, message = "Name 2 - 30")
+    @Column(name = "name")
     private String name;
 
+    @Column(name = "age")
     @Min(value = 0, message = "0 and more")
     private int age;
 
-    @NotEmpty(message = "Not empty")
-    @Email(message = "Not email")
+    @Column(name = "email")
+    @NotEmpty(message = "cant empty")
+    @Email
     private String email;
-
-    @Pattern(regexp = "[A-Z]\\w+, [A-Z]\\w+, \\d{6}", message = "Your address must be Country, City, ******")
-    private String address;
-
 
     public Person() {
     }
 
-    public Person(int id, String name, int age, String email, String address) {
+    public Person(int id, String name, int age, String email) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.email = email;
-        this.address = address;
     }
 
     public int getId() {
@@ -63,11 +72,13 @@ public class Person {
         this.email = email;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
