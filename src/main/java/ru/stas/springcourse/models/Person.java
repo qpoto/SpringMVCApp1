@@ -1,10 +1,13 @@
 package ru.stas.springcourse.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Entity
 @Table(name = "Person")
@@ -28,6 +31,19 @@ public class Person {
     @NotEmpty(message = "cant empty")
     @Email
     private String email;
+
+    @Column(name = "date_of_birth")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dateOfBirth;
+
+    @Column(name = "created_by")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdBy;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "mood")
+    private Mood mood;
 
     public Person() {
     }
@@ -70,6 +86,30 @@ public class Person {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Date getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(Date createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public Mood getMood() {
+        return mood;
+    }
+
+    public void setMood(Mood mood) {
+        this.mood = mood;
     }
 
     @Override
